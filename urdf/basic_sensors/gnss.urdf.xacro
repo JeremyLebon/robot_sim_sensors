@@ -40,7 +40,7 @@
   <joint name="${prefix}${index}_joint" type="fixed">
     <parent link="${parent}"/>
     <child link="${prefix}${index}_link"/>
-    <origin xyz="${x_loc} ${y_loc} ${z_loc}" rpy="0 0 0"/>
+    <xacro:insert_block name="origin"/>
   </joint>
 
   <gazebo reference="${prefix}${index}_link">

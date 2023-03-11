@@ -1,11 +1,19 @@
 <?xml version="1.0"?>
 <robot name="view_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
 
-    <!-- Flag to select the high or low quality model -->
+   <!-- Flag to select the high or low quality model -->
     <xacro:property name="hq" value="true" />
     <!-- <xacro:property name="robot_index" default="1" />-->
     <xacro:property name="prefix" default="robot_1" /> 
 
+
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/load_all_sensors.urdf.xacro" />
+
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/base_link.urdf.xacro" />
+
+
+    <xacro:base_link_sensors prefix="${prefix}" />
+        
     <!-- ##################  BASIC SENSORS ################## -->
     <xacro:monocamera prefix="${prefix}" name="monocamera" index="front" parent="${prefix}_base_link" enabled="false" hq="${hq}" >
         <origin xyz="0.35 0.0 0.23" rpy="0 0 0"/>
@@ -31,7 +39,7 @@
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     </xacro:imu_sensor>
 
-    <xacro:gnss prefix="${prefix}"  name="gnss"  parent="${prefix}_base_link" index="1" publish_bf="true"  enabled="false" hq="${hq}" >
+    <xacro:gnss prefix="${prefix}"  name="gnss"  parent="${prefix}_base_link" index="1"  enabled="false" hq="${hq}" >
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     </xacro:gnss>
     

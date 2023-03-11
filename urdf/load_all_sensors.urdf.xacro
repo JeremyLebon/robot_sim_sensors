@@ -5,23 +5,25 @@
      <!-- Include the BASIC SENSORS -->
     
    
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/monocamera.urdf.xacro" />
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/depthcam.urdf.xacro" />
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/wide_angle_camera.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/monocamera.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/depthcam.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/wide_angle_camera.urdf.xacro" />
 
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/lidar2D.urdf.xacro" />
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/lidar3D.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/lidar2D.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/lidar3D.urdf.xacro" />
 
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/gnss.urdf.xacro" />
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/imu.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/gnss.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/imu.urdf.xacro" />
 
-    <xacro:include filename="$(find robot_sim_sensors)/basic_sensors/bumper.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/bumper.urdf.xacro" />
 
 
 
     <!-- Include the BRAND SENSORS -->
     
-    <!-- <xacro:include filename="$(find robot_sim_sensors)/brand_sensors/..." /> -->
+    <!-- <xacro:include filename="$(find robot_sim_sensors)/urdf/brand_sensors/..." /> -->
 
+
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/inertia.urdf.xacro" />
  
 </robot>
