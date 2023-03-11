@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="box_inertia" params="m w h d">
+    <inertial>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+      <mass value="${m}"/>
+      <inertia ixx="${(m/12) * (h*h + d*d)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (w*w + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + h*h)}"/>
+    </inertial>
+  </xacro:macro>
+  <!-- IMPORTANT DON'T NAME the macro camera because camera already exist as tag see 51 -->
+  <xacro:macro name="wide_angle_camera" params="prefix:='' name:='' index parent *origin enabled hq">
+    <xacro:if value="${enabled}">                           -->
+    <link name="${prefix}_${name}_${index}_link">
+    <visual>
+     <geometry>
+       <box size="0.01 0.01 0.01"/>
+     </geometry>-->
+   </visual>
+    <collision>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+     <xacro:box_inertia m="0.1" w="0.1" d="0.1" h="0.1"/>
+  </link>
+
+  <joint name="${prefix}_${name}_${index}_joint" type="fixed">
+    <parent link="${parent}"/>
+    <child link="${prefix}_${name}_${index}_link"/>   
+    <xacro:insert_block name="origin"/>
+  </joint>   
+
+  <gazebo reference="${prefix}_${name}_${index}_link">
+    <gravity>true</gravity>
+    <sensor name="${name}_${index}" type="wideanglecamera">
+    <camera>
+       <horizontal_fov>6.283</horizontal_fov>
+    <image>
+      <width>320</width>
+      <height>240</height>
+    </image>
+    <clip>
+      <near>0.1</near>
+      <far>100</far>
+    </clip>
+    <!-- A new section named `lens`. -->
+    <lens>
+      <!-- type element is mandatory -->
+      <type>custom</type>
+      <!-- manually defined mapping function r = c1*f*fun(theta/c2 + c3) -->
+      <!-- More information here: https://en.wikipedia.org/wiki/Fisheye_lens#Mapping_function -->
+      <custom_function>
+        <c1>1.05</c1>
+        <!-- linear scaling -->
+        <c2>4</c2>
+        <!-- angle scaling -->
+        <f>1.0</f>
+        <!-- one more scaling parameter -->
+        <fun>tan</fun>
+        <!-- one of sin,tan,id -->
+      </custom_function>
+      <!-- if it is set to `true` your horizontal FOV will ramain as defined -->
+      <!-- othervise it depends on lens type and custom function, if there is one -->
+      <scale_to_hfov>true</scale_to_hfov>
+      <!-- clip everything that is outside of this angle -->
+      <cutoff_angle>1.57</cutoff_angle>
+      <!-- resolution of the cubemap texture, the highter it is - the sharper is your image -->
+      <env_texture_size>512</env_texture_size>
+    </lens>
+    <always_on>1</always_on>
+    <update_rate>30</update_rate>
+    </camera>
+      <plugin name="${prefix}_${name}_${index}_controller" filename="libgazebo_ros_camera.so">
+            <ros>
+             <namespace>${prefix}</namespace>
+              <!-- topics need to be prefixed with camera_name for remapping -->
+              <argument>image_raw:=image</argument>
+              <argument>camera_info:=/raw_cam_info</argument>
+            </ros>
+            <!-- TODO: change -->
+            <!-- omit camera_name to default to sensor name -->
+            <!-- <camera_name>mycamera</camera_name> -->
+            <!-- frame_name>omit so it defaults to link name</frame_name-->
+      </plugin>
+    </sensor>
+</gazebo>
+</xacro:if>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="view_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <!-- Flag to select the high or low quality model -->
+    <xacro:property name="hq" value="true" />
+    <!-- <xacro:property name="robot_index" default="1" />-->
+    <xacro:property name="prefix" default="robot_1" /> 
+
+    <!-- ##################  BASIC SENSORS ################## -->
+    <xacro:monocamera prefix="${prefix}" name="monocamera" index="front" parent="${prefix}_base_link" enabled="false" hq="${hq}" >
+        <origin xyz="0.35 0.0 0.23" rpy="0 0 0"/>
+    </xacro:monocamera>
+
+    <xacro:wide_angle_camera prefix="${prefix}" name="wideanglecamera" index="front" parent="${prefix}_base_link"  enabled="false" hq="${hq}">
+        <origin xyz="0.35 0.0 0.23" rpy="0 0 0"/>
+    </xacro:wide_angle_camera>
+
+    <xacro:depthcam prefix="${prefix}" name="depthcam" index="1" parent="${prefix}_base_link"  enabled="false" hq="${hq}">
+        <origin xyz="0.3 0.05 0.23" rpy="0 0 0"/>
+    </xacro:depthcam>
+
+    <xacro:lidar2D prefix="${prefix}" name="lidar2D" index="1" parent="${prefix}_base_link"   enabled="false" hq="${hq}">
+        <origin xyz="0.3 -0.05 0.23" rpy="0 0 0"/>
+    </xacro:lidar2D>
+
+    <xacro:lidar3D prefix="${prefix}" name="lidar3D" index="1" parent="${prefix}_base_link" enabled="true" hq="${hq}">
+        <origin xyz="0.20 0.0 0.30" rpy="0 0 0"/>
+    </xacro:lidar3D>
+
+    <xacro:imu_sensor prefix="${prefix}" name="imu" index="1" parent="${prefix}_base_link"  enabled="true" hq="${hq}">
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    </xacro:imu_sensor>
+
+    <xacro:gnss prefix="${prefix}"  name="gnss"  parent="${prefix}_base_link" index="1" publish_bf="true"  enabled="false" hq="${hq}" >
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    </xacro:gnss>
+    
+        
+
+
+</robot>
