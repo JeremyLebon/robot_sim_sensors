@@ -27,11 +27,15 @@
         <origin xyz="0.3 0.05 0.23" rpy="0 0 0"/>
     </xacro:depthcam>
 
+    <xacro:stereocam prefix="${prefix}" name="stereocam" index="1" parent="${prefix}_base_link"  enabled="true" hq="${hq}">
+        <origin xyz="0.3 0.05 0.23" rpy="0 0 0"/>
+    </xacro:stereocam>
+
     <xacro:lidar2D prefix="${prefix}" name="lidar2D" index="1" parent="${prefix}_base_link"   enabled="false" hq="${hq}">
         <origin xyz="0.3 -0.05 0.23" rpy="0 0 0"/>
     </xacro:lidar2D>
 
-    <xacro:lidar3D prefix="${prefix}" name="lidar3D" index="1" parent="${prefix}_base_link" enabled="true" hq="${hq}">
+    <xacro:lidar3D prefix="${prefix}" name="lidar3D" index="1" parent="${prefix}_base_link" enabled="false" hq="${hq}">
         <origin xyz="0.20 0.0 0.30" rpy="0 0 0"/>
     </xacro:lidar3D>
 
@@ -42,6 +46,9 @@
     <xacro:gnss prefix="${prefix}"  name="gnss"  parent="${prefix}_base_link" index="1"  enabled="false" hq="${hq}" >
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     </xacro:gnss>
+
+    
+
     
         
 

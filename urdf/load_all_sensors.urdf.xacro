@@ -8,6 +8,7 @@
     <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/monocamera.urdf.xacro" />
     <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/depthcam.urdf.xacro" />
     <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/wide_angle_camera.urdf.xacro" />
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/stereocam.urdf.xacro" />
 
     <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/lidar2D.urdf.xacro" />
     <xacro:include filename="$(find robot_sim_sensors)/urdf/basic_sensors/lidar3D.urdf.xacro" />
