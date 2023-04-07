@@ -15,6 +15,7 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'urdf/basic_sensors'), glob('urdf/basic_sensors/*.xacro')),
         (os.path.join('share', package_name, 'urdf/brand_sensors'), glob('urdf/brand_sensors/*.xacro')),
+        (os.path.join('share', package_name, 'urdf/brand_sensors/meshes'), glob('urdf/brand_sensors/meshes/*.stl')),
         (os.path.join('share', package_name, 'urdf/'), glob('urdf/*.xacro')),
                 
     ],

@@ -22,7 +22,7 @@
 
     <!-- Include the BRAND SENSORS -->
     
-    <!-- <xacro:include filename="$(find robot_sim_sensors)/urdf/brand_sensors/..." /> -->
+    <xacro:include filename="$(find robot_sim_sensors)/urdf/brand_sensors/zed2i.urdf.xacro" />
 
 
     <xacro:include filename="$(find robot_sim_sensors)/urdf/inertia.urdf.xacro" />

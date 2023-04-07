@@ -9,21 +9,25 @@
     </inertial>
   </xacro:macro>
 
-  <xacro:macro name="depthcam" params="prefix:='' name:='' index parent *origin enabled hq">
+  <xacro:macro name="zed2i" params="prefix:='' name:='' index parent *origin enabled hq">
     <xacro:if value="${enabled}">
     <!-- *********************** DEPTHCAM SETUP *********************************  -->
     <!-- Each sensor must be attached to a link.                              -->
       <link name="${prefix}_${name}_${index}_link">
         <visual>
+          <origin rpy=" 0 0 1.57" xyz="0 0 0.0" />
           <geometry>
-            <box size="0.01 0.01 0.01"/>
+            <!-- <box size="0.01 0.01 0.01"/> -->
+            <mesh scale="0.001 0.001 0.001" filename="file://$(find robot_sim_sensors)/urdf/brand_sensors/meshes/ZED2i.stl" />
           </geometry>
-          <origin rpy=" 1.57 0 1.57" xyz="0 0 0.0" />
+          
         </visual>
 
       <collision>
+        <origin rpy=" 0 0 1.57" xyz="0 0 0.0" />
         <geometry>
-          <origin rpy=" 1.57 0 1.57" xyz="0 0 0.0" />
+          <!-- <mesh scale="0.001 0.001 0.001" filename="file://$(find robot_sim_sensors)/urdf/brand_sensors/meshes/ZED2i.stl" /> -->
+          <box size="0.001 0.001 0.001" /> 
         </geometry>
       </collision>
       <xacro:box_inertia m="0.01" w="0.01" d="0.01" h="0.01"/>
@@ -43,7 +47,7 @@
       </inertial>
       <collision>
           <geometry>
-              <box size="0.01 0.01 0.01" />
+              <box size="0.001 0.001 0.001" /> 
           </geometry>
           <origin rpy="0 0 0" xyz="0 0 0.0" />
       </collision>
@@ -58,7 +62,7 @@
       <joint name="${prefix}_${name}_${index}_joint_pointcloud" type="fixed">
           <parent link="${prefix}_${name}_${index}_link" />
           <child link="${prefix}_${name}_${index}_link_depthcloud" />
-          <origin xyz="0 0 0" rpy="-1.57 0 -1.57"  />
+          <origin xyz="0.1 0 0" rpy="-1.57 0 -1.57"  />
       </joint>
 
 
