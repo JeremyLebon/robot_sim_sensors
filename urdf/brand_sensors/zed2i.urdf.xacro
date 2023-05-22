@@ -15,7 +15,7 @@
     <!-- Each sensor must be attached to a link.                              -->
       <link name="${prefix}_${name}_${index}_link">
         <visual>
-          <origin rpy=" 0 0 1.57" xyz="0 0 0.0" />
+          <origin rpy=" 0 0 1.57" xyz="-0.05 0 0.0" />
           <geometry>
             <!-- <box size="0.01 0.01 0.01"/> -->
             <mesh scale="0.001 0.001 0.001" filename="file://$(find robot_sim_sensors)/urdf/brand_sensors/meshes/ZED2i.stl" />
@@ -24,7 +24,7 @@
         </visual>
 
       <collision>
-        <origin rpy=" 0 0 1.57" xyz="0 0 0.0" />
+        <origin rpy=" 0 0 1.57" xyz="-0.05 0 0.0" />
         <geometry>
           <!-- <mesh scale="0.001 0.001 0.001" filename="file://$(find robot_sim_sensors)/urdf/brand_sensors/meshes/ZED2i.stl" /> -->
           <box size="0.001 0.001 0.001" /> 
@@ -62,7 +62,7 @@
       <joint name="${prefix}_${name}_${index}_joint_pointcloud" type="fixed">
           <parent link="${prefix}_${name}_${index}_link" />
           <child link="${prefix}_${name}_${index}_link_depthcloud" />
-          <origin xyz="0.1 0 0" rpy="-1.57 0 -1.57"  />
+          <origin xyz="0.0 0.0 0.0" rpy="-1.57 0 -1.57"  />
       </joint>
 
 
@@ -82,7 +82,7 @@
                 </depth_camera>
                 <clip>
                   <near>0.02</near>
-                  <far>300</far>
+                  <far>20</far>
                 </clip>
                 <noise>
                   <type>gaussian</type>
