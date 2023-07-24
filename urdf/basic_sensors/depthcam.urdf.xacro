@@ -55,15 +55,15 @@
       </joint>
 
       <joint name="${prefix}${name}_${index}_joint_pointcloud" type="fixed">
-          <parent link="${prefix}_${name}_${index}_link"/>
-          <child link="${prefix}_${name}_${index}_link_depthcloud"/>
+          <parent link="${prefix}${name}_${index}_link"/>
+          <child link="${prefix}${name}_${index}_link_depthcloud"/>
           <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
       </joint>
 
 
       <gazebo reference="${prefix}${name}_${index}_link">
         <gravity>true</gravity>
-        <sensor name="${name}_${index}" type="depth">
+        <sensor name="${prefix}${name}_${index}" type="depth">
           <update_rate>60</update_rate>
               <visualize>false</visualize>
               <camera>
