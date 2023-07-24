@@ -15,7 +15,7 @@
       <xacro:if value="${enabled}">
 
   <!-- *********************** LIDAR SETUP **********************************  -->
- <link name="${prefix}_${name}_${index}_link">
+ <link name="${prefix}${name}_${index}_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="0.125"/>
@@ -37,14 +37,14 @@
     </visual>
   </link>
 
-  <joint name="${prefix}_${name}_${index}_joint" type="fixed">
+  <joint name="${prefix}${name}_${index}_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${prefix}_${name}_${index}_link"/>
+    <child link="${prefix}${name}_${index}_link"/>
     <xacro:insert_block name="origin"/>
   </joint>
 
-  <gazebo reference="${prefix}_${name}_${index}_link">
-    <sensor name="${name}_${index}" type="gpu_ray">
+  <gazebo reference="${prefix}${name}_${index}_link">
+    <sensor name="${prefix}${name}_${index}" type="gpu_ray">
       <always_on>true</always_on>
       <visualize>true</visualize>
       <update_rate>10</update_rate>
@@ -74,13 +74,13 @@
           <stddev>0.05</stddev>
         </noise>
       </ray>
-      <plugin name="${prefix}_${name}_${index}_controller" filename="libgazebo_ros_ray_sensor.so">
+      <plugin name="${prefix}${name}_${index}_controller" filename="libgazebo_ros_ray_sensor.so">
         <ros>
           <namespace>${prefix}</namespace>
           <remapping>~/out:=pointcloud2</remapping>
         </ros>
         <output_type>sensor_msgs/PointCloud2</output_type>
-        <frame_name>${prefix}_${name}_${index}_link</frame_name>
+        <frame_name>${prefix}${name}_${index}_link</frame_name>
       </plugin>
     </sensor>
   </gazebo>

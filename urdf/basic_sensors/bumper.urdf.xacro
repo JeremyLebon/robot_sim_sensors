@@ -13,7 +13,7 @@
   <xacro:if value="${enabled}">
   <!-- *********************** IMU SETUP *********************************  -->
   <!-- Each sensor must be attached to a link.                              -->
-  <link name="${prefix}_${name}_${index}_link">
+  <link name="${prefix}${name}_${index}_link">
     <visual>
       <geometry>
         <box size="0.1 0.1 0.1"/>
@@ -30,26 +30,26 @@
     <xacro:box_inertia m="0.1" w="0.1" d="0.1" h="0.1"/>
   </link>
 
-  <joint name="${prefix}_${name}_${index}_joint" type="fixed">
+  <joint name="${prefix}${name}_${index}_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${prefix}_${name}_${index}_link"/>
+    <child link="${prefix}${name}_${index}_link"/>
     <xacro:insert_block name="origin"/>
   </joint>
 
-  <gazebo reference="${prefix}_${name}_${index}_link">
+  <gazebo reference="${prefix}${name}_${index}_link">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="${prefix}_${name}_${index}_link">
+  <gazebo reference="${prefix}${name}_${index}_link">
     <gravity>true</gravity>
     <max_contacts>1</max_contacts>
-        <sensor type="contact" name="${prefix}_${name}_${index}_sensor">
+        <sensor type="contact" name="${prefix}${name}_${index}_sensor">
           <always_on>true</always_on>
           <update_rate>60</update_rate>
           <contact>
             <collision>robot_base_link_fixed_joint_lump__bumper_collision_collision_2</collision>
           </contact>
-          <plugin name="${prefix}_${name}_${index}_controller" filename="libgazebo_ros_bumper.so">
+          <plugin name="${prefix}${name}_${index}_controller" filename="libgazebo_ros_bumper.so">
             <ros>
               <namespace>${prefix}</namespace>
               <argument>bumper_states:=bumper</argument>

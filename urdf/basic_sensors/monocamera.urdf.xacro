@@ -27,15 +27,15 @@
      <xacro:box_inertia m="0.1" w="0.1" d="0.1" h="0.1"/>
   </link>
 
-  <joint name="${prefix}_${name}_${index}_joint" type="fixed">
+  <joint name="${prefix}${name}_${index}_joint" type="fixed">
     <parent link="${parent}"/>
-    <child link="${prefix}_${name}_${index}_link"/>   
+    <child link="${prefix}${name}_${index}_link"/>   
     <xacro:insert_block name="origin"/>  
   </joint>   
 
-  <gazebo reference="${prefix}_${name}_${index}_link">
+  <gazebo reference="${prefix}${name}_${index}_link">
     <gravity>true</gravity>
-    <sensor name="${name}_${index}" type="camera">
+    <sensor name="${prefix}${name}_${index}" type="camera">
        <update_rate>30</update_rate>
           <visualize>false</visualize>
           <camera name="head">
@@ -58,7 +58,7 @@
               <stddev>0.007</stddev>
             </noise>
           </camera>
-      <plugin name="${prefix}_${name}_${index}_controller" filename="libgazebo_ros_camera.so">
+      <plugin name="${prefix}${name}_${index}_controller" filename="libgazebo_ros_camera.so">
             <ros>
              <namespace>${prefix}</namespace>
               <!-- topics need to be prefixed with camera_name for remapping -->

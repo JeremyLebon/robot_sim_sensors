@@ -13,7 +13,7 @@
     <xacro:if value="${enabled}">
     <!-- *********************** DEPTHCAM SETUP *********************************  -->
     <!-- Each sensor must be attached to a link.                              -->
-      <link name="${prefix}_${name}_${index}_link">
+      <link name="${prefix}${name}_${index}_link">
         <visual>
           <origin xyz="-0.05 0 0" rpy="0 0 1.57"/>
             <geometry>
@@ -32,7 +32,7 @@
         <xacro:box_inertia m="0.000001" w="0.001" d="0.001" h="0.001"/>
       </link>
 
-      <link name="${prefix}_${name}_${index}_link_depthcloud">
+      <link name="${prefix}${name}_${index}_link_depthcloud">
         <visual>
           <geometry>
               <box size="0.001 0.001 0.001" />
@@ -48,20 +48,20 @@
         </collision>
       </link>
 
-      <joint name="${prefix}_${name}_${index}_joint" type="fixed">
+      <joint name="${prefix}${name}_${index}_joint" type="fixed">
         <parent link="${parent}"/>
-        <child link="${prefix}_${name}_${index}_link"/>
+        <child link="${prefix}${name}_${index}_link"/>
         <xacro:insert_block name="origin"/>
       </joint>
 
-      <joint name="${prefix}_${name}_${index}_joint_pointcloud" type="fixed">
+      <joint name="${prefix}${name}_${index}_joint_pointcloud" type="fixed">
           <parent link="${prefix}_${name}_${index}_link"/>
           <child link="${prefix}_${name}_${index}_link_depthcloud"/>
           <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
       </joint>
 
 
-      <gazebo reference="${prefix}_${name}_${index}_link">
+      <gazebo reference="${prefix}${name}_${index}_link">
         <gravity>true</gravity>
         <sensor name="${name}_${index}" type="depth">
           <update_rate>60</update_rate>
@@ -91,7 +91,7 @@
 
 
 
-          <plugin name="${prefix}_${name}_${index}_controller" filename="libgazebo_ros_camera.so">
+          <plugin name="${prefix}${name}_${index}_controller" filename="libgazebo_ros_camera.so">
                 <ros>
                   
                   <namespace>${prefix}</namespace>
@@ -110,7 +110,7 @@
 
                 <min_depth>0.1</min_depth>
                 <max_depth>500</max_depth>
-                <frame_name>${prefix}_${name}_${index}_link_depthcloud</frame_name>
+                <frame_name>${prefix}${name}_${index}_link_depthcloud</frame_name>
           </plugin>
         </sensor>
       </gazebo>
