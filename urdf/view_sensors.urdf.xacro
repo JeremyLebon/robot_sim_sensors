@@ -47,6 +47,10 @@
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
     </xacro:gnss>
 
+    <xacro:zed2i prefix="${prefix}" name="depthcam" parent="${prefix}_base_link" index="1"  hq="${hq}" enabled="true">
+                <origin xyz="0.3 0.0 0.0" rpy="0 0 0"/>
+    </xacro:zed2i>
+
     
 
     
