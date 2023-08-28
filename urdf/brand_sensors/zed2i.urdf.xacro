@@ -64,8 +64,12 @@
           <child link="${prefix}${name}_${index}_link_depthcloud" />
           <origin xyz="0.0 0.0 0.0" rpy="-1.57 0 -1.57"  />
       </joint>
-
-
+      <gazebo reference="${prefix}${name}_${index}_link">
+        <material>Gazebo/Black</material>
+      </gazebo>
+      <gazebo reference="${prefix}${name}_${index}_link_depthcloud">
+        <material>Gazebo/Black</material>
+      </gazebo>
       <gazebo reference="${prefix}${name}_${index}_link">
         <gravity>true</gravity>
         <sensor name="${prefix}${name}_${index}" type="depth">
