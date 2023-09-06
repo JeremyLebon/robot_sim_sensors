@@ -5,7 +5,7 @@ Collection of sensors to use in gazebo. This repo is ROS2 use.
 
 
 Collection of all sensors
-repo will be based on the robotnik_sensors [repo](https://github.com/RobotnikAutomation/robotnik_sensors)
+
 - sensor on principle
     * monocamera
     * depthcam
